@@ -1,0 +1,59 @@
+<!-- organization_detail.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Organization Details</title>
+    <style>
+        *{
+            margin: 10px auto;
+        }
+        input[type="text"] {
+    width: 100%;
+    margin: 5px 0 15px 0;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+    font-size: large;
+}
+a{
+    text-decoration: none;
+    color: white;
+    font-family: cursive;
+}
+
+        .card{
+            width: 350px;
+            height:350px ;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: rgb(180, 178, 178);
+            box-shadow: gray 0 0 10px;
+        }
+        .btn { 
+    padding: 10px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+h2{
+    color: azure;
+}
+    </style>
+</head>
+<body>
+    <div class="card">
+    <h1>Organization Details</h1>
+    <h2>{{ organization.name }}</h2>
+    <!-- Display other organization details here -->
+    <button class="btn"><a href="{% url 'organization_update' pk=organization.pk %}">Update</a></button>
+    <button class="btn"><a href="{% url 'organization_delete' pk=organization.pk %}">Delete</a></button>
+    <button class="btn"><a href="{% url 'organization_list' %}">Back to List</a></button>
+</div>
+</body>
+</html>

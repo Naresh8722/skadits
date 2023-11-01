@@ -1,0 +1,87 @@
+<!-- signup.html -->
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <style>        
+    .login-container {
+    width: 400px;
+    margin: 10px auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+}
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+#id_organization{
+    width: 100%;
+    margin: 5px 0 5px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;    
+}
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    margin: 5px 0 5px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+}
+
+button {
+    padding: 10px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.links { 
+        text-decoration: none;
+        padding: 5px;
+        font-size: larger;
+        color: white;
+    }
+    .btn{
+        margin-top: 0px;
+         display:  flex;
+        width: 100%;
+        align-items: center;
+        justify-content: space-around;
+    }
+</style>
+    <title>User Signup</title>
+</head>
+<body>
+    <div class="login-container">
+
+    <h1>User Signup</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Sign Up</button>
+    </form>
+    <p style="text-align: center;"> or
+    </p>
+    <!-- <button ><a href="{% url 'login' %}">Login</a></button> -->
+    <div class="btn">
+        <button> <a  class="links" href="{% url 'login' %}">Log In</a> </button>
+    </div>
+</div>
+</body>
+</html>

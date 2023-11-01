@@ -1,0 +1,32 @@
+<!-- superadmin_organization_list.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Superadmin - All Organizations</title>
+</head>
+<body>
+    <h1>All Organizations (Superadmin View)</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <!-- Add other columns as needed -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for organization in organizations %}
+                <tr>
+                    <td>{{ organization.id }}</td>
+                    <td>{{ organization.name }}</td>
+                    <!-- Display other organization details in respective columns -->
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'logout' %}">Logout</a>
+    <a href="{% url 'organization_list' %}">Back to User List</a>
+</body>
+</html>

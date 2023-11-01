@@ -1,0 +1,113 @@
+<!-- update_profile.html -->
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+     .login-container {
+    width: 300px;
+    margin: 100px auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+}
+form {
+    display: flex;
+    flex-direction: column;
+}
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    margin: 5px 0 15px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+}
+
+button {
+    padding: 10px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.image{
+            width: 50%;
+            height: 150px;
+            border-radius: 50%;
+          }
+    .btn{
+        margin-top: -50px;
+         display:  flex;
+        width: 100%;
+        align-items: center;
+        justify-content: space-around;
+    }
+    .links { 
+        text-decoration: none;
+        padding: 5px;
+        font-size: larger;
+        color: white;
+    }
+    .parent{
+        display: flex;
+        
+    }
+    </style>
+    <title>Update Profile</title>
+</head>
+<body>
+    <div class="parent">
+ <!-- <a href="{% url 'logout' %}">Logout</a> -->
+    <div class="login-container">
+        <h3>Update Profile</h3>
+    <form method="post"  enctype="multipart/form-data">
+        {% csrf_token %}
+        {% for field in profile_form %}
+        <div>
+            {% if field.name == 'profile_image' %} {# Checking if the field is the profile image field #}
+                {% if field.value %} {# Checking if the field has a value #}
+                    <img class="image" src="{{ field.value.url }}" alt="Profile Image"> {# Display the image #}
+                    <input type="file" name="profile_image" accept="image/*" id="id_profile_image">               
+                    {% else %}
+                    No image uploaded
+                {% endif %}
+            {% else %}
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+            {% endif %}
+            
+        </div>
+    {% endfor %}
+    
+
+        <button type="submit">Update Profile</button>
+        
+    </form>
+</div>
+
+
+<div class="login-container">
+    <h3>Change Password</h3>
+    <form method="post">
+        {% csrf_token %}
+        {{ password_form.as_p }}
+        <button type="submit">Change Password</button>
+    </form>
+</div>
+</div>
+<div class="btn">
+<button> <a  class="links" href="{% url 'profile' %}">Back</a> </button>
+</div>
+
+</body>
+</html>

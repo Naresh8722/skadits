@@ -1,0 +1,110 @@
+<!-- profile.html -->
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Profile</title>
+    <style>
+            .login-container {
+    width: 300px;
+    margin: 100px auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+body {
+    font-family: cursive;
+     margin: 0;
+    padding: 0;
+}
+form {
+    display: flex;
+    flex-direction: column;
+}
+p{
+     margin: 5px;
+}
+
+         .image{
+            width: 50%;
+            height: 150px;
+            border-radius: 50%;
+          }
+        .div{
+            box-shadow: #827a7a 0px 0px 10px;
+            border-radius: 10px;
+            margin:  10px auto;
+            height: 350px;
+            width: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            background-color: #dedbdb;
+            /* text-align: right; */
+        }
+    input[type="text"],
+    input[type="password"] {
+    width: 100%;
+    margin: 5px 0 15px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+    }
+    .btn{
+        margin-top: 10px;
+         display:  flex;
+        width: 100%;
+        align-items: center;
+        justify-content: space-around;
+    }
+    .links { 
+        text-decoration: none;
+        padding: 5px;
+        font-size: larger;
+        color: white;
+    }
+
+    button {
+    padding: 8px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+    
+    </style>
+</head>
+<body>
+    <div class="div">
+    {% if user %}
+    <img class="image" src="{{ profile.profile_image.url }}" alt="Profile Image">
+
+        <p>Username : {{ user.username }}</p>
+        <p>Firstname : {{user.first_name}}</p>
+        <p>Last Name : {{user.last_name}}</p>
+        <p>Email : {{user.email}}</p>
+        <!-- <p>Mob:{{user.mobile_number}}</p> -->
+        <!-- Display other user details -->
+        {% if profile %}
+         <div class="btn"> 
+          <button>   <a class="links" href="{% url 'logout' %}">Logout</a></button>
+          <button> <a  class="links" href="{% url 'update_profile' %}">Update Profile</a> </button>
+          
+        </div>
+            <!-- Display other profile details -->
+        {% endif %}
+    {% endif %}
+    <!-- <a href="{% url 'update_profile' %}">update profile</a> -->
+    <!-- example: a link or button to log out -->
+    
+</div>
+
+<div class="btn">
+<button>   <a class="links" href="{% url 'organization_list' %}">Organization List</a></button>
+</div>
+</body>
+</html>
