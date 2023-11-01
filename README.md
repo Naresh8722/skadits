@@ -1,5 +1,5 @@
 # skadits
-.clone the code
+    clone the code
 #### after the install python
 #### create the python env
 ##### install the Djnago then
